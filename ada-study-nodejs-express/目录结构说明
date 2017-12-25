@@ -1,0 +1,25 @@
+1、自定义目录node，该结构为了迎合java程序员，承担后台代码工作。
+扮演角色spring-mvc对应：controller\service\model等结构
+
+2、     +node
+        ++business          （数据组织层）
+        +++controllers       (控制器层)
+        +++models            (模型层)
+        +++services          (业务层)
+        ++config            （配置层）
+        ++libs              (公用模块封装工具)
+
+
+
+问题：
+1、req.reflush Etag
+2、返回状态无法自定义
+3、db表明与model不一致
+4、公用方法，为什么不能提取？
+function (err,productComments){
+        if(err){
+            callback(err)
+        }else{
+            callback(null,productComments);
+        }
+    });
