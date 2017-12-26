@@ -1,7 +1,7 @@
 /**
  * Created by CZD on 2017/12/25 0025.
  */
-var ProductComments = require("../models/product.comments.entity");
+var ProductComments = require("../entitys/product.comments.entity");
 var async = require("async");
 var logger = require('../../../node/libs/logger.lib');
 /**
