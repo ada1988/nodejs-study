@@ -1,3 +1,4 @@
+'user strict'
 /**
  * Created by CZD on 2017/12/25 0025.
  */
@@ -97,12 +98,12 @@ exports.list = function(req,res){
         if(req.query.size){
             size = parseInt(req.query.size);
         }
-        var param = {};
+        var params = {};
         if(req.query.title){
             params.title = req.query.title;
         }
 
-        productCommontsService.list(index,size,params,{_id:'asc'},function(err,page){
+        productCommontsService.list(index,size,params,{state:'asc'},function(err,page){
             if(err){
                 logger.system.error(err);
                 res.status(500).end();

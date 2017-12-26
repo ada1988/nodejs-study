@@ -16,7 +16,7 @@ var custom = [{ validator: userValidator, msg: 'Uh oh, {user} does not equal "so
 var productCommentsSchema = new mongoose.Schema({
         user: { type: String },
         comments: { type: String },
-        product:{type: mongoose.Schema.Types.ObjectId,ref: 'Category'},
+        product:{type: mongoose.Schema.Types.ObjectId,ref: 'Product'},
         type: { type: String },
         state: { type: Number },
         update_date: { type: Date,default:Date.now()},

@@ -2,6 +2,7 @@
  * Created by CZD on 2017/12/25 0025.
  */
 var ProductComments = require("../entitys/product.comments.entity");
+var Product = require("../entitys/product.entity");
 var async = require("async");
 var logger = require('../../../node/libs/logger.lib');
 var Page = require('../../../node/business/commons/page');
@@ -62,7 +63,8 @@ exports.list = function (pageNo,pageSize,query,sort,callback){
         exports.count(query,callback);
     },function(count,callback){
         var page = new Page(pageNo,pageSize,count);
-        ProductComments.find(query).polulate('product','title').sort(sort).skip(page.skip).limit(size).lean().exec(
+        //populate(外键对象，对象属性集合)
+        ProductComments.find(query).populate('product',['title','no']).sort(sort).skip(page.skip).limit(pageSize).lean().exec(
             function (err ,result){
                 if(err){
                     callback(err);
