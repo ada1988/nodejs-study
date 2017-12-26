@@ -16,10 +16,5 @@
 2、返回状态无法自定义
 3、db表明与model不一致
 4、公用方法，为什么不能提取？
-function (err,productComments){
-        if(err){
-            callback(err)
-        }else{
-            callback(null,productComments);
-        }
-    });
+5、mongose 怎么关联集合中的数据？
+集合（collection）

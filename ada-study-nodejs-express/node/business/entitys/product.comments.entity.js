@@ -23,5 +23,6 @@ var productCommentsSchema = new mongoose.Schema({
         create_date: { type: Date },
         up: { type: Number }
 });
+var collectionName = 'productcomments';
 
-module.exports = mongoose.model('ProductComments',productCommentsSchema);
+module.exports = mongoose.model('ProductComments',productCommentsSchema,collectionName);
