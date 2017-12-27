@@ -146,3 +146,46 @@ exports.del = function (req, res) {
 
     });
 }
+
+
+
+/**
+ * 该实例仅供参考
+ * @param req
+ * @param res
+ */
+exports.tagCustomers = function (req, res) {
+    req.checkBody({
+        customers: {
+            notEmpty: true,
+            errorMessage: 'customers must be not empty'
+        },
+        tagName: {
+            notEmpty: true,
+            errorMessage: 'tagName must be not empty'
+        }
+    });
+
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
+            logger.db.error('params errors ', result.array());
+            return res.status(400).end();
+        }
+        //获取session中财富管理人的id（测试期间，写死）
+        var wealthManagementerId = '5a42ee5be80b6d2580a94455';
+        var params = {
+            customers:req.body.customers,
+            tagName:req.body.tagName,
+            wealthManagementerId:wealthManagementerId
+        };
+
+        categoryService.tagCustomers(params,function (err,result){
+            if (err) {
+                logger.db.error('one error', err);
+                res.status(500).end();
+            } else {
+                res.status(200).json(result);
+            }
+        })
+    });
+}

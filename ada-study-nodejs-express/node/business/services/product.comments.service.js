@@ -94,3 +94,20 @@ exports.count = function (query,callback){
 exports.del=function (_id,callback) {
     ProductComments.remove({_id:_id},callback);
 }
+
+/**
+ * 修改对象中的数组(该实例不可使用，仅参考)
+ * @param params
+ * @param callback
+ */
+exports.tagCustomers = function(params,callback){
+    //foreach里面嵌套save\update方法，触发异步陷阱，并且mongoose的数据库锁机制（每次操作数据库时会锁定这个库直到本次操作结束）会，出现逻辑错误。
+    async.eachSeries(params.customers, function (customerId, callback) {
+        //修改对象中的集合对象
+        WealthManagementer.update(
+            {'_id' : params.wealthManagementerId},
+            {'$addToSet':{'m_tag_customers':{'customer_id':customerId,'tag_name':params.tagName}}},
+            callback);
+    },callback);
+
+}

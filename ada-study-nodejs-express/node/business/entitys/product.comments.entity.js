@@ -21,7 +21,12 @@ var productCommentsSchema = new mongoose.Schema({
         state: { type: Number },
         update_date: { type: Date,default:Date.now()},
         create_date: { type: Date },
-        up: { type: Number }
+        up: { type: Number },
+        m_tag_customers:
+        {
+            type: mongoose.Schema.Types.Mixed,//未知类型定义（该实例我使用数组）
+            required: false
+        }
 });
 var collectionName = 'productcomments';
 
