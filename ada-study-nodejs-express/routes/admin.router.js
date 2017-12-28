@@ -30,6 +30,13 @@ router.get('/list',function(req,res,next){
 router.get('/del',function(req,res,next){
     productCommentsController.del(req,res);
 });
+
+
+/**
+ * 标签 注册路由
+ */
+var wealthManagementerRouter = require('./wealth.managementer.router');
+wealthManagementerRouter.registRout(router);
 /**
  * 导出对象
  */
